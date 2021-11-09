@@ -59,8 +59,9 @@ form.addEventListener("submit",(e) =>{
         li.appendChild(link);
         taskList.appendChild(li);
     }
-    taskInput.value="";
+   
     storeTaskInLocalStorage(taskInput.value);
+    taskInput.value="";
 e.preventDefault();
 });
 
@@ -83,7 +84,7 @@ document.addEventListener("DOMContentLoaded", (e)=> {
     } else{
         tasks =JSON.parse(localStorage.getItem("tasks"));
     }
-    tasks.forEach((i) =>{
+    tasks.forEach((i) => {
         const li=document.createElement("li");
         li.className="collecton-item";
         li.appendChild(document.createTextNode(i));
@@ -97,3 +98,12 @@ document.addEventListener("DOMContentLoaded", (e)=> {
 // document.addEventListener("DOMContentLoaded", function (){
 //     taskInput.value="";
 // });
+//SUPPRIMER LES TACHES
+clearBtn.addEventListener("click", function(){
+    // methode1:
+    // taskList.innerHTML = "";
+    // methode 2:
+    while(taskList.firstChild){
+        taskList.removeChild(taskList.firstChild);
+    }
+});
